@@ -1,0 +1,16 @@
+[Unit]
+Description=uWSGI Emperor service
+After=syslog.target
+
+[Service]
+#ExecStart=/usr/local/bin/uwsgi --emperor /virtualenvironments/testproject/myfirstdjango
+ExecStart=/virtualenvironments/testproject/bin/uwsgi --ini /virtualenvironments/testproject/myfirstdjango/uwsgi.ini -H /virtualenvironments/testproject
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+StandardError=syslog
+NotifyAccess=all
+
+
+[Install]
+WantedBy=multi-user.target
